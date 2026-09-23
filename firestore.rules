@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Catch-all: Deny all reads and writes by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Health / Test Connection endpoint used by client validation
+    match /test/{docId} {
+      allow read: if docId == 'connection';
+    }
+
+    // Reusable Global Helpers
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email_verified == true &&
+        request.auth.token.email == 'culturisk@gmail.com';
+    }
+
+    function isValidSubmission(data) {
+      return data.keys().hasAll(['id', 'formType', 'visitorId', 'userEmail', 'status', 'submittedAt']) &&
+        data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+        data.formType is string && data.formType in ['waitlist', 'booking', 'audit', 'sequence', 'payment', 'roi_scenario', 'partner_connect'] &&
+        data.visitorId is string && data.visitorId.size() > 0 && data.visitorId.size() <= 128 &&
+        data.userEmail is string && data.userEmail.size() > 0 && data.userEmail.size() <= 256 &&
+        data.status is string && data.status in ['new', 'in_review', 'processed', 'confirmed'] &&
+        data.submittedAt is string && data.submittedAt.size() <= 64 &&
+        (!('userName' in data) || (data.userName is string && data.userName.size() <= 128)) &&
+        (!('appName' in data) || (data.appName is string && data.appName.size() <= 128)) &&
+        (!('summary' in data) || (data.summary is string && data.summary.size() <= 512)) &&
+        (!('userId' in data) || data.userId == null || (data.userId is string && data.userId.size() <= 128)) &&
+        (!('details' in data) || data.details is map);
+    }
+
+    // Master Submissions Collection: Organizes all visitor & user forms with unique IDs
+    match /submissions/{submissionId} {
+      // Individual fetch: Admin or submission owner
+      allow get: if isValidId(submissionId) && (
+        isAdmin() ||
+        (isSignedIn() && resource.data.userId == request.auth.uid)
+      );
+
+      // Secure List Query: Restrict queries to admin or current authenticated user's records
+      allow list: if isAdmin() || (
+        isSignedIn() && resource.data.userId == request.auth.uid
+      );
+
+      // Submission Creation: Validated payload with structural schema enforcement
+      allow create: if isValidId(submissionId) &&
+        isValidSubmission(incoming()) &&
+        incoming().id == submissionId &&
+        (!isSignedIn() || incoming().userId == request.auth.uid);
+
+      // Updates restricted to administrators (e.g. status review transitions)
+      allow update: if isValidId(submissionId) &&
+        isAdmin() &&
+        isValidSubmission(incoming()) &&
+        incoming().id == existing().id &&
+        incoming().submittedAt == existing().submittedAt &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'summary', 'details']);
+
+      // Deletions restricted to administrators
+      allow delete: if isValidId(submissionId) && isAdmin();
+    }
+  }
+}

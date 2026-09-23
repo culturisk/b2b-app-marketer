@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "Submission": {
+      "title": "Submission",
+      "description": "Systematically organized form submission created by a visitor or authenticated user with a unique ID.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique structured submission ID",
+          "maxLength": 128
+        },
+        "formType": {
+          "type": "string",
+          "description": "Category of form submitted on the app",
+          "enum": ["waitlist", "booking", "audit", "sequence", "payment", "roi_scenario", "partner_connect"]
+        },
+        "visitorId": {
+          "type": "string",
+          "description": "Persistent visitor device identifier",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth user UID if signed in",
+          "maxLength": 128
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "Contact email provided in form or auth profile",
+          "maxLength": 256
+        },
+        "userName": {
+          "type": "string",
+          "description": "Name of the founder, developer, or submitter",
+          "maxLength": 128
+        },
+        "appName": {
+          "type": "string",
+          "description": "Name of the B2B or Shopify application",
+          "maxLength": 128
+        },
+        "status": {
+          "type": "string",
+          "description": "Current processing state of the submission",
+          "enum": ["new", "in_review", "processed", "confirmed"]
+        },
+        "submittedAt": {
+          "type": "string",
+          "description": "ISO timestamp of form submission",
+          "maxLength": 64
+        },
+        "summary": {
+          "type": "string",
+          "description": "Concise human-readable summary of form payload",
+          "maxLength": 512
+        },
+        "details": {
+          "type": "object",
+          "description": "Structured payload containing specific form fields"
+        }
+      },
+      "required": ["id", "formType", "visitorId", "userEmail", "status", "submittedAt"]
+    }
+  },
+  "firestore": {
+    "/submissions/{submissionId}": {
+      "schema": {
+        "$ref": "#/entities/Submission"
+      },
+      "description": "Collection of all visitor and user form submissions organized with unique IDs."
+    }
+  }
+}

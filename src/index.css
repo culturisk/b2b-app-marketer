@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #080B11;
+    color: #FFFFFF;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+/* Shopify Emerald & High Contrast Black/White styles */
+.glow-shopify {
+  box-shadow: 0 0 25px -2px rgba(0, 128, 96, 0.35);
+}
+
+.glow-shopify-sm {
+  box-shadow: 0 0 15px -1px rgba(0, 128, 96, 0.25);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px -2px rgba(0, 168, 119, 0.3);
+}
+
+.border-subtle {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.border-subtle-hover:hover {
+  border-color: rgba(0, 128, 96, 0.5);
+}
+
+.bg-shopify-dark {
+  background-color: #080B11;
+}
+
+.bg-shopify-surface {
+  background-color: #0D111A;
+}
+
+.bg-shopify-card {
+  background-color: #121824;
+}
+
+/* Subtle dot telemetry grid in Shopify green */
+.grid-telemetry {
+  background-image: radial-gradient(rgba(0, 128, 96, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080B11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3F3F46;
+}
