@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div className="flex flex-col">
             <span className="font-heading font-extrabold text-lg sm:text-xl text-white tracking-tight flex items-center gap-1.5">
-              B2B App Marketer
+              B2B App Marketing
               <span className="text-[9px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#008060]/25 text-[#00a877] border border-[#008060]/40 font-bold">
                 B2B & MULTI-ECOSYSTEM
               </span>

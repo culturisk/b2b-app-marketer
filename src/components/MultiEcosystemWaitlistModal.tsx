@@ -186,7 +186,7 @@ export const MultiEcosystemWaitlistModal: React.FC<MultiEcosystemWaitlistModalPr
   const copyConfirmation = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard.writeText(
-        `B2B App Marketer Waitlist Confirmation: Ticket ${ticketId} | Queue Position #${queuePosition} | Target Ecosystems: ${selectedEcosystems.join(', ')}`
+        `B2B App Marketing Waitlist Confirmation: Ticket ${ticketId} | Queue Position #${queuePosition} | Target Ecosystems: ${selectedEcosystems.join(', ')}`
       );
       setCopiedTicket(true);
       setTimeout(() => setCopiedTicket(false), 2500);

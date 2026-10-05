@@ -442,7 +442,7 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      'ShopifyAppMarketer overhauled our ASO listing screenshots and keyword metadata. Within 3 weeks, we jumped from rank #14 to #3 for "post purchase upsell" and organic installs doubled with zero ad spend.',
+      'B2B App Marketing overhauled our ASO listing screenshots and keyword metadata. Within 3 weeks, we jumped from rank #14 to #3 for "post purchase upsell" and organic installs doubled with zero ad spend.',
     author: 'Tara Lin',
     role: 'Head of Growth',
     app: 'BoostConvert Suite ($110k MRR)',

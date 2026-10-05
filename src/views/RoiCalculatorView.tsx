@@ -310,7 +310,7 @@ export const RoiCalculatorView: React.FC<RoiCalculatorViewProps> = ({
           <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 shadow-2xl space-y-3">
             <div className="text-xs font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-[#00a877]" />
-              <span>Toggle ShopifyAppMarketer Levers</span>
+              <span>Toggle B2B App Marketing Levers</span>
             </div>
 
             <label className="flex items-start gap-3 p-3 rounded-xl bg-[#09090B] border border-zinc-800 hover:border-[#008060]/40 transition-colors cursor-pointer">

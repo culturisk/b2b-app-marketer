@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   TrendingUp,
@@ -31,6 +31,41 @@ export const PlatformCapabilityView: React.FC<PlatformCapabilityViewProps> = ({
   const [activePillar, setActivePillar] = useState<
     'aso' | 'co-marketing' | 'performance' | 'plg-reviews'
   >(initialPillar);
+
+  useEffect(() => {
+    setActivePillar(initialPillar);
+  }, [initialPillar]);
+
+  const pillarTabs = [
+    {
+      id: 'aso' as const,
+      pillarNum: '01',
+      title: 'Shopify App ASO & CRO',
+      category: 'Organic Search Algo',
+      icon: TrendingUp,
+    },
+    {
+      id: 'co-marketing' as const,
+      pillarNum: '02',
+      title: 'Built for Shopify & Polaris',
+      category: 'UX Quality & Badging',
+      icon: ShieldCheck,
+    },
+    {
+      id: 'performance' as const,
+      pillarNum: '03',
+      title: 'Shopify Search Ads',
+      category: 'Paid Search Marketing',
+      icon: Target,
+    },
+    {
+      id: 'plg-reviews' as const,
+      pillarNum: '04',
+      title: 'Merchant Reviews & PLG',
+      category: 'Retention & Review Loops',
+      icon: Zap,
+    },
+  ];
 
   const pillarsData = {
     aso: {
@@ -171,33 +206,64 @@ export const PlatformCapabilityView: React.FC<PlatformCapabilityViewProps> = ({
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-16 text-white">
-      {/* Pillar Tabs Bar - High Contrast Shopify Theme */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-4 overflow-x-auto gap-2">
-        {(
-          [
-            'aso',
-            'co-marketing',
-            'performance',
-            'plg-reviews',
-          ] as Array<'aso' | 'co-marketing' | 'performance' | 'plg-reviews'>
-        ).map((key) => {
-          const p = pillarsData[key];
-          const isActive = activePillar === key;
-          return (
-            <button
-              key={key}
-              onClick={() => setActivePillar(key)}
-              className={`px-4 py-2.5 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
-                isActive
-                  ? 'bg-white text-black border-white shadow-lg'
-                  : 'bg-transparent text-slate-400 border-transparent hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {p.icon}
-              <span>{p.title.split(' ')[0]} {p.title.split(' ')[1]}</span>
-            </button>
-          );
-        })}
+      {/* Pillar Tabs Bar - Executive Shopify Growth Architecture Switcher */}
+      <div className="bg-[#0b0e17]/95 border border-white/10 rounded-2xl p-2 backdrop-blur-md shadow-2xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          {pillarTabs.map((tab) => {
+            const isActive = activePillar === tab.id;
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActivePillar(tab.id)}
+                className={`w-full text-left p-3 sm:p-3.5 rounded-xl transition-all duration-200 flex items-center gap-3 border cursor-pointer relative overflow-hidden group ${
+                  isActive
+                    ? 'bg-[#008060]/20 border-[#00a877]/60 text-white shadow-lg shadow-[#008060]/20'
+                    : 'bg-[#121826]/40 border-white/5 text-slate-300 hover:text-white hover:bg-white/5 hover:border-white/15'
+                }`}
+              >
+                {isActive && (
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#008060] via-[#00a877] to-[#00E5FF]" />
+                )}
+
+                <div
+                  className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                    isActive
+                      ? 'bg-[#008060] text-white shadow-md shadow-[#008060]/40'
+                      : 'bg-white/5 text-slate-400 group-hover:text-white group-hover:bg-white/10'
+                  }`}
+                >
+                  <Icon className="w-4.5 h-4.5" />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`text-[9px] font-mono font-bold uppercase tracking-wider ${
+                        isActive ? 'text-[#00a877]' : 'text-slate-400'
+                      }`}
+                    >
+                      Pillar {tab.pillarNum}
+                    </span>
+                    {isActive && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00a877] animate-pulse" />
+                    )}
+                  </div>
+                  <div
+                    className={`text-xs sm:text-sm font-bold truncate leading-tight mt-0.5 ${
+                      isActive ? 'text-white' : 'text-slate-200'
+                    }`}
+                  >
+                    {tab.title}
+                  </div>
+                  <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                    {tab.category}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Active Pillar Showcase Header */}

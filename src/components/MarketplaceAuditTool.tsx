@@ -158,7 +158,7 @@ export const MarketplaceAuditTool: React.FC<MarketplaceAuditToolProps> = ({
         recordFormSubmission({
           formType: 'audit',
           customId: `SUB-${auditId}`,
-          userEmail: 'visitor@b2bappmarketer.com',
+          userEmail: 'visitor@b2bappmarketing.com',
           appName: data.appName || 'Shopify App',
           summary: `Marketplace Diagnostic for ${data.appName || 'App'} (Score: ${data.overallScore || 78}/100)`,
           status: 'new',

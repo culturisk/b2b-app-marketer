@@ -211,7 +211,7 @@ export const AuditScorecardView: React.FC<AuditScorecardViewProps> = ({
 
   const copyReportToClipboard = () => {
     if (!auditResult) return;
-    const text = `=== SHOPIFY APP MARKETER AUDIT REPORT ===
+    const text = `=== B2B APP MARKETING AUDIT REPORT ===
 App: ${auditResult.appName}
 Overall Score: ${auditResult.overallScore}/100
 - Listing Health: ${auditResult.listingHealthScore}/100

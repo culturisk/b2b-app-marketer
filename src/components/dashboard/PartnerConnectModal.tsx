@@ -105,7 +105,7 @@ export const PartnerConnectModal: React.FC<PartnerConnectModalProps> = ({
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-zinc-400">Shopify Partner Org:</span>
-                <span className="font-mono text-zinc-200">ShopifyAppMarketer Labs LLC</span>
+                <span className="font-mono text-zinc-200">B2B App Marketing Labs LLC</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-zinc-400">Tracked Live App:</span>

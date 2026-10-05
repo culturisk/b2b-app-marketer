@@ -196,7 +196,7 @@ export async function recordFormSubmission(
     formType: input.formType,
     visitorId,
     userId: currentUser ? currentUser.uid : null,
-    userEmail: input.userEmail || (currentUser?.email ?? 'visitor@b2bappmarketer.com'),
+    userEmail: input.userEmail || (currentUser?.email ?? 'visitor@b2bappmarketing.com'),
     userName: input.userName || (currentUser?.displayName ?? 'Anonymous Visitor'),
     appName: input.appName || 'B2B Application',
     status: input.status || 'new',

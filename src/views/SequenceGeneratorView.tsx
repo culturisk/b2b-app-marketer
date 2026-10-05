@@ -70,7 +70,7 @@ export const SequenceGeneratorView: React.FC<SequenceGeneratorViewProps> = ({
         await recordFormSubmission({
           formType: 'sequence',
           customId: `SUB-${seqId}`,
-          userEmail: 'visitor@b2bappmarketer.com',
+          userEmail: 'visitor@b2bappmarketing.com',
           appName: appName || 'Shopify App',
           summary: `Sequence Generator: ${outputType} for ${appName} (${targetAudience})`,
           status: 'processed',

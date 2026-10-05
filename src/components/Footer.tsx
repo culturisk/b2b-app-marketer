@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <div className="w-3.5 h-3.5 border-2 border-white rounded-sm transform rotate-45 bg-white" />
               </div>
               <span className="font-heading font-extrabold text-lg text-white">
-                B2B App Marketer<span className="text-[#00a877]">.com</span>
+                B2B App Marketing<span className="text-[#00a877]">.com</span>
               </span>
             </div>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-300 max-w-sm">
@@ -302,7 +302,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Bar */}
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © {new Date().getFullYear()} Culturisk • B2B App Marketer. Dedicated to B2B SaaS, Shopify App optimization, Polaris UX, and multi-ecosystem growth acceleration.
+            © {new Date().getFullYear()} Culturisk • B2B App Marketing. Dedicated to B2B SaaS, Shopify App optimization, Polaris UX, and multi-ecosystem growth acceleration.
           </div>
           <div className="flex items-center gap-3 font-mono text-[11px] text-slate-300">
             <span>Polaris 12+</span>
